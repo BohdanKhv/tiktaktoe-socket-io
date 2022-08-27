@@ -1,0 +1,65 @@
+
+/* Align */
+
+.text-wrap {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.text-center {
+    text-align: center;
+}
+.text-end {
+    text-align: end;
+}
+.text-start {
+    text-align: start;
+}
+
+/* Sizes */
+
+.fs-1 {
+    font-size: 3rem!important;
+}
+.fs-2 {
+    font-size: 1.5rem!important;
+}
+.fs-3 {
+    font-size: 1.25rem!important;
+}
+.fs-4 {
+    font-size: 1rem!important;
+}
+.fs-5 {
+    font-size: 0.75rem!important;
+}
+.fs-6 {
+    font-size: 0.5rem!important;
+}
+
+/* line title */
+
+.text-1-line-title {
+    max-height: 18px;
+    font-size: 16px;
+    overflow: hidden;
+}
+.text-2-line-title {
+    max-height: 44px;
+    font-size: 16px;
+    overflow: hidden;
+}
+
+/* Hover */
+
+.text-hover {
+    font-weight: 500;
+    border-radius: var(--border-radius);
+}
+.text-hover:hover {
+    color: var(--color-primary);
+}
+
+.text-secondary {
+    opacity: 0.5;
+}
