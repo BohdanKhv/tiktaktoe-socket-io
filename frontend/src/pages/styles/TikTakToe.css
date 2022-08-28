@@ -1,0 +1,38 @@
+.ttt {
+    margin: 50px auto;
+    grid-template-columns: repeat(3, 100px);
+    background-color: var(--color-secondary);
+    row-gap: 10px;
+    column-gap: 15px;
+    display: grid;
+    justify-content: center;
+    border-radius: var(--border-radius);
+    width: fit-content;
+    padding: 20px;
+}
+
+.ttt-cell {
+    height: 100px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 60px;
+    border-radius: 15px;
+    background-color: var(--color-main);
+    cursor: pointer;
+    transition-duration: var(--transition-duration);
+    font-weight: bold;
+    color: #fff;
+}
+.ttt-cell:hover {
+    background-color: var(--cell-player);
+}
+.ttt-cell:active {
+    background-color: var(--color-3);
+}
+
+.ttt-cell-x,
+.ttt-cell-o {
+    background-color: var(--cell-player);
+}
