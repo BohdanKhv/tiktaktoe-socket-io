@@ -4,11 +4,9 @@ import { TikTakToe } from './pages'
 function App() {
   return (
     <Router>
-      <div className="container max-w">
-        <Routes>
-          <Route path='/' element={<TikTakToe/>} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path='/' element={<TikTakToe/>} />
+      </Routes>
     </Router>
   );
 }

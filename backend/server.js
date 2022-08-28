@@ -35,12 +35,29 @@ io.on('connection', (socket) => {
             else if (filtered[1].size === 2)
                 player = 'O';
 
-            socket.emit('joined_room', { playersCount: filtered[1].size, player: player });
-            socket.to(data).emit('user_joined_room', { playersCount: filtered[1].size });
+            let turn = '';
+
+            if(filtered[1].size >= 2) turn = 'X';
+
+            socket.emit('joined_room', { playersCount: filtered[1].size, player: player, turn });
+            socket.to(data).emit('user_joined_room', { playersCount: filtered[1].size, turn });
 
             console.log(`User with ID: ${socket.id}, joined room: ${data}, as player: ${player}, players count: ${filtered[1].size}`);
         }
     })
+
+    socket.on('make_move', (data) => {
+        console.log(data)
+
+        let turn = '';
+        if(data.player === 'X')
+            turn = 'O'
+        else if(data.player === 'O')
+            turn = 'X'
+
+        socket.to(data.room).emit('move_made', {id: data.id, player: data.player, turn});
+        socket.emit('move_made', {id: data.id, player: data.player, turn});
+    });
 
     socket.on('exit_room', (data) => {
         socket.leave(data)

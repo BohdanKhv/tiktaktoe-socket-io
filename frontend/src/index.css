@@ -4,7 +4,6 @@
   --color-tertiary: #2E2E3B;
   --color-primary: #FF0078;
   --color-border: #2E2E3B;
-  --color-spot: #1ED760;
 
   --text-light: #ffffff;
   --text-dark: #2E2E3B;
@@ -21,7 +20,7 @@
   --color-3: #011627;
   --color-4: #ffbd2c;
   --color-5: #ff5e59;
-  --color-6: #24cb3c;
+  --color-6: #1ED760;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap');

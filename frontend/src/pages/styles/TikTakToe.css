@@ -2,8 +2,9 @@
     margin: 50px auto;
     grid-template-columns: repeat(3, 100px);
     background-color: var(--color-secondary);
-    row-gap: 10px;
-    column-gap: 15px;
+    /* box-shadow: var(--box-shadow); */
+    row-gap: 1px;
+    column-gap: 4px;
     display: grid;
     justify-content: center;
     border-radius: var(--border-radius);
@@ -18,21 +19,42 @@
     justify-content: center;
     align-items: center;
     font-size: 60px;
-    border-radius: 15px;
-    background-color: var(--color-main);
+    /* border-radius: 15px; */
+    /* background-color: var(--color-main); */
     cursor: pointer;
     transition-duration: var(--transition-duration);
     font-weight: bold;
-    color: #fff;
+    color: #000;
 }
+.ttt-cell:nth-of-type(5),
+.ttt-cell:nth-of-type(4),
+.ttt-cell:nth-of-type(2),
+.ttt-cell:nth-of-type(1) {
+    border-bottom: 2px solid var(--color-border);
+    border-right: 2px solid var(--color-border);
+}
+.ttt-cell:nth-of-type(6),
+.ttt-cell:nth-of-type(3) {
+    border-bottom: 2px solid var(--color-border);
+}
+.ttt-cell:nth-of-type(4) {
+    border-left-width: 0;
+}
+.ttt-cell:nth-of-type(8),
+.ttt-cell:nth-of-type(7) {
+    border-right: 2px solid var(--color-border);
+}
+
 .ttt-cell:hover {
-    background-color: var(--cell-player);
+    background-color: var(--color-main);
+    /* background-color: var(--cell-player); */
 }
 .ttt-cell:active {
-    background-color: var(--color-3);
+    opacity: 0.8;
 }
 
 .ttt-cell-x,
 .ttt-cell-o {
-    background-color: var(--cell-player);
+    background-color: var(--color-secondary);
+    /* background-color: var(--cell-player); */
 }
