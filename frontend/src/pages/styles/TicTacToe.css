@@ -51,3 +51,6 @@
 .ttt-cell-o {
     /* background-color: var(--cell-player); */
 }
+.winner {
+    color: var(--color-6);
+}

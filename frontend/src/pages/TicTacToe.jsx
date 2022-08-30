@@ -6,7 +6,6 @@ const socket = io("http://localhost:5000")
 
 const TicTacToe = () => {
     const [player, setPlayer] = useState();
-    const [uId, setUId] = useState('');
     const [room, setRoom] = useState('');
     const [joinedRoom, setJoinedRoom] = useState('');
     const [playersCount, setPlayersCount] = useState(0);
@@ -24,7 +23,7 @@ const TicTacToe = () => {
         {id: 9, value: ''},
     ]);
 
-    const handleEndGame = (id) => {
+    const handleEndGame = () => {
         let winner = '';
         // Check if there is a winner
         if(cells[0].value === cells[1].value && cells[1].value === cells[2].value && cells[0].value !== '') {
@@ -59,23 +58,13 @@ const TicTacToe = () => {
                     return cell;
                 }));
                 const winner = handleEndGame();
-                console.log(winner);
                 socket.emit('make_move', {id, player, room, winner});
             }
         }
     }
 
-
-    const joinRoom = async () => {
-        await socket.emit('join_room', room);
-        setUId(socket.id)
-        setJoinedRoom(room)
-    }
-
-    const exitRoom = async () => {
-        await socket.emit('exit_room', room)
-        setUId('')
-        setJoinedRoom('')
+    const reset = () => {
+        setJoinedRoom('');
         setCells([
             {id: 1, value: ''},
             {id: 2, value: ''},
@@ -93,13 +82,22 @@ const TicTacToe = () => {
         setTurn('');
     }
 
+    const joinRoom = async () => {
+        await socket.emit('join_room', room);
+        setJoinedRoom(room);
+    }
+
+    const exitRoom = async () => {
+        await socket.emit('exit_room', room);
+        reset();
+    }
+
     const playAgain = async () => {
         await socket.emit('play_again', {room, turn: winner === 'Draw' ? turn : winner});
     }
 
     useEffect(() => {
         socket.on('joined_room', (data) => {
-            console.log(data)
             setPlayer(data.player);
             setPlayersCount(data.playersCount);
             setTurn(data.turn === "O" ? 'O' : data.turn === "X" ? 'X' : 'Waiting for another player'); 
@@ -110,8 +108,22 @@ const TicTacToe = () => {
         });
 
         socket.on('exited_room', (data) => {
-            console.log(data)
             setPlayersCount(data.playersCount);
+            if(data.playersCount === 1) {
+                setTurn('Waiting for another player');
+                setPlayer('X');
+                setCells([
+                    {id: 1, value: ''},
+                    {id: 2, value: ''},
+                    {id: 3, value: ''},
+                    {id: 4, value: ''},
+                    {id: 5, value: ''},
+                    {id: 6, value: ''},
+                    {id: 7, value: ''},
+                    {id: 8, value: ''},
+                    {id: 9, value: ''},
+                ]);
+            }
         });
 
         socket.on('move_made', (data) => {
@@ -138,7 +150,7 @@ const TicTacToe = () => {
                 {id: 9, value: ''},
             ]);
             setWinner('');
-            setTurn(data.turn === "O" ? 'O' : data.turn === "X" ? 'X' : 'Waiting for another player');
+            setTurn(data.turn || 'Waiting for another player');
         });
     }, [socket]);
 
@@ -161,6 +173,7 @@ const TicTacToe = () => {
                             <div className={`ttt-cell${cell.value ? cell.value === 'X' ? ' ttt-cell-x' : ' ttt-cell-o' : ''}`}
                                 key={i}
                                 onClick={() => {if(turn === player) handleMove(cell.id)}}
+                                data-cell={cell.id}
                                 style={{
                                     ['--cell-player']: `var(--color-${player === 'X' ? '5' : '6'})`,
                                 }}
