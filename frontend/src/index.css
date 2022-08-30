@@ -46,7 +46,6 @@ body {
   -webkit-font-smoothing: antialiased;
   font-weight: 400;
   min-height: 100vh;
-  padding-bottom: 5vh;
   overflow-x: hidden;
   background-color: var(--color-main);
   /* background: #ff0078;
@@ -126,6 +125,43 @@ input:hover {
 .input-lg {
   padding: 12px 16px;
   font-size: 1.2rem;
+}
+
+.flex {
+  display: flex;
+}
+.flex-column {
+  flex-direction: column;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.align-center {
+  align-items: center;
+}
+.gap-1 {
+  gap: 1rem;
+}
+.mt-1 {
+  margin-top: 1rem;
+}
+.fs-2 {
+  font-size: 2rem;
+}
+.fs-1 {
+  font-size: 1.5rem;
+}
+.fs-3 {
+  font-size: 3rem;
+}
+
+.container {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 1rem;
 }
 
 @keyframes spin {

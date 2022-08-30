@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { TikTakToe } from './pages'
+import { TicTacToe } from './pages'
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<TikTakToe/>} />
+        <Route path='/' element={<TicTacToe/>} />
       </Routes>
     </Router>
   );

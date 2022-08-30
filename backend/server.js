@@ -55,8 +55,14 @@ io.on('connection', (socket) => {
         else if(data.player === 'O')
             turn = 'X'
 
-        socket.to(data.room).emit('move_made', {id: data.id, player: data.player, turn});
-        socket.emit('move_made', {id: data.id, player: data.player, turn});
+        socket.to(data.room).emit('move_made', {id: data.id, player: data.player, turn, winner: data.winner});
+        socket.emit('move_made', {id: data.id, player: data.player, turn, winner: data.winner});
+    });
+
+    socket.on('play_again', (data) => {
+        console.log(data)
+        socket.in(data.room).emit('play_again', {turn: data.turn});
+        socket.emit('play_again', {turn: data.turn});
     });
 
     socket.on('exit_room', (data) => {

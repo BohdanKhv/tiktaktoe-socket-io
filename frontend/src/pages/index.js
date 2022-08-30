@@ -1,5 +1,5 @@
-import TikTakToe from "./TikTakToe";
+import TicTacToe from "./TicTacToe";
 
 export {
-    TikTakToe
+    TicTacToe
 }
